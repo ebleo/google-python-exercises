@@ -29,21 +29,31 @@ def remove_adjacent(nums):
 def linear_merge(list1, list2):
     x = []
     j = 0
-    print(list2)
-    print('ENTER FXN')
+    total_l = len(list1) + len(list2)
+    # print(list1)
+    # print('ENTER FXN')
     for item1 in list1:
-        print("item1: ", item1, '\t', "j: " ,j, 'max: ', str(len(list2)))
-        print()
-        while j < len(list2) and item1 >= list2[j]: 
-            print('while loop')
-            print(list2[j], "\t1\t", str(item1))
+        # print("item1: ", item1, '\t', "j: " ,j, 'max: ', str(len(list2)))
+        # print()
+        while j < len(list2) and item1 >= list2[j]:
+            # print('while loop')
+            # print(list2[j], "\t1\t", str(item1))
             x.append(list2[j])
             j += 1
-            print('j incremented')
-        print('exit loop', 'item1: ', item1)
+            # print('j incremented')
+        # print('exit loop', 'item1: ', item1)
         x.append(item1)
-        print('x: ', x)
-        return x
+        # print('x: ', x)
+
+# the following line addresses a problem previously missed:
+# what if the item in list 2 is greater than the item in list 1,
+# AND len(l2) > len(l1)
+
+    if len(x) < total_l:
+        rem = total_l - len(x)
+        rem_ind = rem * -1
+        x += list2[rem_ind:]
+    return x
 
 # Note: the solution above is kind of cute, but unforunately list.pop(0)
 # is not constant time with the standard python list implementation, so
