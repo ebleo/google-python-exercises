@@ -78,7 +78,7 @@ def print_top(filename):
     [f, d] = readfile(filename)
     for line in f:
         line = line.lower()
-        l =line.split(' ')
+        l =line.split()
         for i in range(len(l)):
             if l[i] in d:
                 d[l[i]] += 1
@@ -96,6 +96,7 @@ def print_top(filename):
     ls = sorted(l, key = sort2)
     for i in ls:
         print(ls[i][0], '\t', ls[i][1])
+    return ls
 
 print('function created', '[2]')
 
