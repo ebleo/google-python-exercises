@@ -62,10 +62,10 @@ def print_words(filename):
     sorted_keys = sorted(d) # list of keys
     d_list = [] # representative sorted list
     counter = 0
-        for key in sorted_keys:
-            entry = d[key]
-            d_list.append([key, entry])
-            counter += 1
+    for key in sorted_keys:
+        entry = d[key]
+        d_list.append([key, entry])
+        counter += 1
 
     # this also needs to be fixed
     for key, entry in d_list:
@@ -105,9 +105,8 @@ def sort2(x):
 
 
 ###
-# print('hello')
-# print('values', sys.argv)
-# stored_value = sys.argv
+# the following must be called in cmd as:
+# python wordcount {--count or --topcount} file
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
