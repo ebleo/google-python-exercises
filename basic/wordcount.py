@@ -98,8 +98,6 @@ def print_top(filename):
         print(ls[i][0], '\t', ls[i][1])
     return ls
 
-print('function created', '[2]')
-
 def sort2(x):
     return x[1]
 
