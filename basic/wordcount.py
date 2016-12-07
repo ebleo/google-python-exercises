@@ -38,27 +38,36 @@ print_words() and print_top().
 """
 
 import sys
+import string as s # for removing punctuation
 
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
-def readfile(filename):
+def get_dict(filename):
     f = open(filename, 'rU')
     d = {}
-    return f, d
-
-def print_words(filename):
-    [f, d] = readfile(filename)
+    """
+    this code needs to be changed because...
+    it gets the words but also keeps the punctuations tacked on
+    must remove punc.
+    """
     for line in f:
         line = line.lower()
+        for ch in s.punctuation:
+            if ch in line:
+                line = line.replace(ch, '')
         l =line.split() # changed, read line 29
         for i in range(len(l)):
             if l[i] in d:
                 d[l[i]] += 1
             else:
                 d[l[i]] = 1
+    return d
+
+def print_words(filename):
+    d = get_dict(filename)
     sorted_keys = sorted(d) # list of keys
     d_list = [] # representative sorted list
     counter = 0
@@ -75,26 +84,17 @@ def print_words(filename):
 
 
 def print_top(filename):
-    [f, d] = readfile(filename)
-    for line in f:
-        line = line.lower()
-        l =line.split()
-        for i in range(len(l)):
-            if l[i] in d:
-                d[l[i]] += 1
-            else:
-                d[l[i]] = 1
+    d = get_dict(filename)
     l = []
     """
-    this code goes somewhere here-ish
-        # to sort
-        d_list = sorted(d_list, key = sort2)
+    works well, something wrong
+    prints more than just the top 20, also list in lowest count to highest
     """
 
     for word, count in d.items():
         l.append([word, count])
-    ls = sorted(l, key = sort2)
-    for i in ls:
+    ls = sorted(l, key = sort2, reverse = True)
+    for i in range(20):
         print(ls[i][0], '\t', ls[i][1])
     return ls
 
